@@ -116,6 +116,9 @@ pub mod server {
     pub mod xdg_shell_unstable_v6 {
         include!(concat!(env!("OUT_DIR"), "/xdg_shell_unstable_v6_server.rs"));
     }
+    pub mod weston_screenshooter {
+        include!(concat!(env!("OUT_DIR"), "/weston_screenshooter_server.rs"));
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -130,6 +133,9 @@ pub mod client {
     }
     pub mod xdg_shell_unstable_v6 {
         include!(concat!(env!("OUT_DIR"), "/xdg_shell_unstable_v6_client.rs"));
+    }
+    pub mod weston_screenshooter {
+        include!(concat!(env!("OUT_DIR"), "/weston_screenshooter_client.rs"));
     }
 }
 
