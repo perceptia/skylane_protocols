@@ -16,7 +16,7 @@ byteorder = "1.0"
 skylane = "0.1"
 
 [build-dependencies]
-skylane_scanner = "0.1.0"
+skylane_scanner = "0.1"
 
 [lib]
 name = "skylane_protocols"
