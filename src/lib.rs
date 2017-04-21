@@ -41,8 +41,7 @@
 //!
 //! TODO: Add examples for client.
 
-// TODO: Add comments to protocols.
-// #![warn(missing_docs)]
+#![warn(missing_docs)]
 
 extern crate skylane;
 extern crate byteorder;
@@ -58,7 +57,10 @@ mod private {
     /// data, parses it and calls appropriate method of given object which implements attached
     /// interface.
     pub trait Dispatcher<I> {
+        /// Constructs new `Dispatcher`.
         fn new() -> Self;
+
+        /// Demarshals message and call appropriate callback in passed `object`.
         fn dispatch(&mut self,
                     object: &mut I,
                     bundle: &mut Bundle,
@@ -81,6 +83,7 @@ mod private {
     impl<I, D> Handler<I, D>
         where D: Dispatcher<I>
     {
+        /// Constructs new `Handler`.
         pub fn new(object: I) -> Self {
             Handler {
                 object: object,
@@ -105,17 +108,23 @@ mod private {
 
 // -------------------------------------------------------------------------------------------------
 
+/// Server-side protocols.
 pub mod server {
     use skylane::server::{Bundle, Header, ObjectId, SkylaneError, Socket, Task};
     use private::Dispatcher;
     pub use private::Handler;
 
+    /// Protocol generated from `wayland.xml`
     pub mod wayland {
         include!(concat!(env!("OUT_DIR"), "/wayland_server.rs"));
     }
+
+    /// Protocol generated from `xdg-shell-unstable-v6.xml`
     pub mod xdg_shell_unstable_v6 {
         include!(concat!(env!("OUT_DIR"), "/xdg_shell_unstable_v6_server.rs"));
     }
+
+    /// Protocol generated from `weston-screenshooter.xml`
     pub mod weston_screenshooter {
         include!(concat!(env!("OUT_DIR"), "/weston_screenshooter_server.rs"));
     }
@@ -123,17 +132,23 @@ pub mod server {
 
 // -------------------------------------------------------------------------------------------------
 
+/// Client-side protocols.
 pub mod client {
     use skylane::server::{Bundle, Header, ObjectId, SkylaneError, Socket, Task};
     use private::Dispatcher;
     pub use private::Handler;
 
+    /// Protocol generated from `wayland.xml`
     pub mod wayland {
         include!(concat!(env!("OUT_DIR"), "/wayland_client.rs"));
     }
+
+    /// Protocol generated from `xdg-shell-unstable-v6.xml`
     pub mod xdg_shell_unstable_v6 {
         include!(concat!(env!("OUT_DIR"), "/xdg_shell_unstable_v6_client.rs"));
     }
+
+    /// Protocol generated from `weston-screenshooter.xml`
     pub mod weston_screenshooter {
         include!(concat!(env!("OUT_DIR"), "/weston_screenshooter_client.rs"));
     }
