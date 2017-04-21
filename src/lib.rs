@@ -128,6 +128,16 @@ pub mod server {
     pub mod weston_screenshooter {
         include!(concat!(env!("OUT_DIR"), "/weston_screenshooter_server.rs"));
     }
+
+    /// Protocol generated from `linux-dmabuf-unstable-v1.xml`
+    pub mod linux_dmabuf_unstable_v1 {
+        include!(concat!(env!("OUT_DIR"), "/linux_dmabuf_unstable_v1_server.rs"));
+    }
+
+    /// Protocol generated from `wayland-drm.xml`
+    pub mod drm {
+        include!(concat!(env!("OUT_DIR"), "/drm_server.rs"));
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -151,6 +161,16 @@ pub mod client {
     /// Protocol generated from `weston-screenshooter.xml`
     pub mod weston_screenshooter {
         include!(concat!(env!("OUT_DIR"), "/weston_screenshooter_client.rs"));
+    }
+
+    /// Protocol generated from `linux-dmabuf-unstable-v1.xml`
+    pub mod linux_dmabuf_unstable_v1 {
+        include!(concat!(env!("OUT_DIR"), "/linux_dmabuf_unstable_v1_client.rs"));
+    }
+
+    /// Protocol generated from `wayland-drm.xml`
+    pub mod drm {
+        include!(concat!(env!("OUT_DIR"), "/drm_client.rs"));
     }
 }
 

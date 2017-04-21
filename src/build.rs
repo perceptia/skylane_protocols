@@ -26,7 +26,11 @@ fn main() {
     let out_dir = env::var("OUT_DIR").expect("Read OUT_DIR variable");
     let src_dir = env::current_dir().expect("Get current directory");
 
-    for protocol in vec!["wayland", "xdg-shell-unstable-v6", "weston-screenshooter"] {
+    for protocol in vec!["wayland",
+                         "xdg-shell-unstable-v6",
+                         "weston-screenshooter",
+                         "linux-dmabuf-unstable-v1",
+                         "wayland-drm"] {
         let mut src_path = src_dir.clone();
         src_path.push("protocols");
         src_path.push(protocol);
